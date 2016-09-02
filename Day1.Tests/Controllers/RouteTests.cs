@@ -9,14 +9,15 @@ using System.Web.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Day1;
 using Day1.Controllers;
+using Machine.Specifications;
 using Moq;
+using It = Machine.Specifications.It;
 
 namespace Day1.Tests.Controllers
 {
-    [TestClass]
-    public class RouteTests
+    public static class Helper
     {
-        private HttpContextBase CreateHttpContext(string targetUrl = null, string httpMethod = "GET")
+        public static HttpContextBase CreateHttpContext(string targetUrl = null, string httpMethod = "GET")
         {
             Mock<HttpRequestBase> mockRequest = new Mock<HttpRequestBase>();
             mockRequest.Setup(m => m.AppRelativeCurrentExecutionFilePath)
@@ -25,7 +26,7 @@ namespace Day1.Tests.Controllers
 
             Mock<HttpResponseBase> mockResponse = new Mock<HttpResponseBase>();
             mockResponse.Setup(m => m.ApplyAppPathModifier(
-                It.IsAny<string>())).Returns<string>(s => s);
+                Moq.It.IsAny<string>())).Returns<string>(s => s);
 
             Mock<HttpContextBase> mockContext = new Mock<HttpContextBase>();
             mockContext.Setup(m => m.Request).Returns(mockRequest.Object);
@@ -33,9 +34,7 @@ namespace Day1.Tests.Controllers
 
             return mockContext.Object;
         }
-
-        private bool TestIncomingRouteResult(RouteData routeResult,
-            string controller, string action, object propertySet = null)
+        public static bool TestIncomingRouteResult(RouteData routeResult,string controller, string action, object propertySet = null)
         {
 
             Func<object, object, bool> valCompare = (v1, v2) => StringComparer.InvariantCultureIgnoreCase
@@ -54,46 +53,45 @@ namespace Day1.Tests.Controllers
             }
             return result;
         }
-
-        private void TestRouteMatch(string url, string controller, string action,
-    object routeProperties = null, string httpMethod = "GET")
-        {
-            // Организация
-            RouteCollection routes = new RouteCollection();
-            RouteConfig.RegisterRoutes(routes);
-
-            // Действие - обработка маршрута
-            RouteData result
-                = routes.GetRouteData(CreateHttpContext(url, httpMethod));
-
-            // Утверждение
-            Assert.IsNotNull(result);
-            Assert.IsTrue(TestIncomingRouteResult(result, controller,
-                action, routeProperties));
-        }
-
-        private void TestRouteFail(string url)
-        {
-            // Организация
-            RouteCollection routes = new RouteCollection();
-            RouteConfig.RegisterRoutes(routes);
-
-            // Действие - обработка маршрута
-            RouteData result = routes.GetRouteData(CreateHttpContext(url));
-
-            // Утверждение
-            Assert.IsTrue(result?.Route == null);
-        }
-
-        [TestMethod]
-        public void TestIncomingRoutes()
-        {
-            TestRouteMatch("~/Home/Index/aabbbb", "Home", "Index");
-
-            TestRouteMatch("~/Home/Index/aaaaaa", "Home", "Index");
-
-            TestRouteFail("~/Home/Index/123");
-            TestRouteFail("~/Home");
-        }
     }
+
+    [Subject("rout is available")]
+    public class TestRouteMatch
+    {
+        private static RouteData result;
+        private static RouteCollection routes;
+        private static string controller = "Home";
+        private static string action = "Index";
+
+        Establish context = () =>
+        {
+            routes = new RouteCollection();
+            RouteConfig.RegisterRoutes(routes);
+        };
+
+        Because of = () =>
+            result = routes.GetRouteData(Helper.CreateHttpContext("~/Home/Index/aabbbb"));
+
+        It rout_should_be_available = () => 
+            Helper.TestIncomingRouteResult(result, controller, action).ShouldBeTrue();
+    }
+
+    public class TestRouteFail
+    {
+        private static RouteData result;
+        private static RouteCollection routes;
+
+        Establish context = () =>
+        {
+            routes = new RouteCollection();
+            RouteConfig.RegisterRoutes(routes);
+        };
+
+        Because of = () =>
+            result = routes.GetRouteData(Helper.CreateHttpContext("~/Home/Index/123"));
+
+        It rout_should_be_failed = () =>
+            (result?.Route == null).ShouldBeTrue();
+    }
+
 }
