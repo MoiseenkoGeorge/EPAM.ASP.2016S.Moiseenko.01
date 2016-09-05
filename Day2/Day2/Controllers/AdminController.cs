@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Day2.Infrastructure;
+using Day2.Models;
 
 namespace Day2.Controllers
 {
@@ -14,7 +15,15 @@ namespace Day2.Controllers
         [HttpGet]
         public ActionResult Edit()
         {
-            return View("");
+            return View(new UsersViewModel() { Users = StaticUserRepository.GetAll() });
+        }
+
+        [Local]
+        [HttpPost]
+        public ActionResult Edit(UsersViewModel users)
+        {
+            StaticUserRepository.DeleteAll();
+            return View(new UsersViewModel() { Users = StaticUserRepository.GetAll() });
         }
     }
 }

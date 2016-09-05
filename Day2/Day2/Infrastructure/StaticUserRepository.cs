@@ -10,7 +10,12 @@ namespace Day2.Infrastructure
 {
     public static class StaticUserRepository
     {
-        public static List<User> users { get; private set; } = new List<User>();
+        private static List<User> users = new List<User>();
+
+        public static List<User> GetAll()
+        {
+            return users;
+        }
 
         public static async Task<List<User>> Add(User user)
         {
@@ -21,5 +26,10 @@ namespace Day2.Infrastructure
                 return users;
             });
         }  
+
+        public static void DeleteAll()
+        {
+            users = new List<User>();
+        }
     }
 }

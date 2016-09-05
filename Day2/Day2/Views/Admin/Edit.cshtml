@@ -1,0 +1,24 @@
+﻿@model Day2.Models.UsersViewModel
+<form method="post">
+    <div>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+            @foreach (var user in @Model.Users)
+            {
+                <tr>
+                    <td>
+                        @user.Name
+                    </td>
+                    <td>
+                        @user.Surname
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    
+    <input type="submit" class="btn btn-danger" value="Delete All Users" />
+</form>

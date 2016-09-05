@@ -8,10 +8,10 @@ namespace Day2.Controllers
 {
     public class BaseController : Controller
     {
-        // GET: Base
-        public ActionResult Index()
+       protected override void HandleUnknownAction(string actionName)
         {
-            return View();
+            ViewData["actionName"] = actionName;
+            View("Custom404").ExecuteResult(this.ControllerContext);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Day2.Controllers
         [HttpGet]
         public ActionResult UserList()
         {
-            return View("ViewUsers", new UsersViewModel() {Users = StaticUserRepository.users});
+            return View("ViewUsers", new UsersViewModel() {Users = StaticUserRepository.GetAll()});
         }
 
         [ActionName("User-List")]
