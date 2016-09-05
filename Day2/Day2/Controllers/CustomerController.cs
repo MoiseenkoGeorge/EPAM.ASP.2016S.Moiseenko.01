@@ -25,7 +25,7 @@ namespace Day2.Controllers
         [HttpPost]
         public async Task<ActionResult> AddUser(User user)
         {
-            var data = await new RemoteService().AddUser(user);
+            var data = await StaticUserRepository.Add(user);
             UsersViewModel users = new UsersViewModel {Users = data};
             return View("ViewUsers",users);
         }
@@ -34,8 +34,7 @@ namespace Day2.Controllers
         [HttpGet]
         public ActionResult UserList()
         {
-            return View("ViewUsers",
-                new UsersViewModel() {Users = new List<User>() {new User() {Name = "George", Surname = "Moiseenko"}}});
+            return View("ViewUsers", new UsersViewModel() {Users = StaticUserRepository.users});
         }
 
         [ActionName("User-List")]
