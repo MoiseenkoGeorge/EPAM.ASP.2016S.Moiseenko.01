@@ -20,7 +20,7 @@ namespace Day2
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //ControllerBuilder.Current.SetControllerFactory(new DefaultControllerFactory(new CustomControllerActivator()));
-            //ControllerBuilder.Current.SetControllerFactory(new CustomControllerFactory());
+            ControllerBuilder.Current.SetControllerFactory(new CustomControllerFactory());
         }
     }
 }

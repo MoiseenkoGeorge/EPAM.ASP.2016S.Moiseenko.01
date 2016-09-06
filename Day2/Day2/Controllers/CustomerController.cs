@@ -8,17 +8,17 @@ using System.Web.Mvc;
 using Day2.Infrastructure;
 using Day2.Models;
 
-//using Day2.Models;
 
 namespace Day2.Controllers
 {
+    
     public class CustomerController : Controller
     {
         [ActionName("Add-User")]
         [HttpGet]
         public ActionResult AddUser()
         {
-            return View();
+            return View("Add-User");
         }
 
         [ActionName("Add-User")]

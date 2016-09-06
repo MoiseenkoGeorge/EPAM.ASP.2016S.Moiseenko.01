@@ -7,7 +7,7 @@ using System.Web.SessionState;
 
 namespace Day2.Controllers
 {
-    [SessionState(SessionStateBehavior.Disabled)]
+    //[SessionState(SessionStateBehavior.Disabled)]
     public class HomeController : Controller
     {
         // GET: Home

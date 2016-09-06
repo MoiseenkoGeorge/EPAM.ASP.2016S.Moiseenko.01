@@ -11,14 +11,18 @@ namespace Day2.Controllers
 
     public class AdminController : Controller
     {
-        [Local]
+        public AdminController()
+        {
+            this.ActionInvoker = new CustomActionInvoker();
+        }
+        //[Local]
         [HttpGet]
         public ActionResult Edit()
         {
             return View(new UsersViewModel() { Users = StaticUserRepository.GetAll() });
         }
 
-        [Local]
+        //[Local]
         [HttpPost]
         public ActionResult Edit(UsersViewModel users)
         {
