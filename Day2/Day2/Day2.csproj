@@ -174,7 +174,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CustomActionInvoker.cs" />
-    <Compile Include="Infrastructure\CustomControllerActivator.cs" />
     <Compile Include="Infrastructure\CustomControllerFactory.cs" />
     <Compile Include="Infrastructure\LocalAttribute.cs" />
     <Compile Include="Infrastructure\StaticUserRepository.cs" />
