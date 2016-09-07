@@ -1,4 +1,6 @@
-﻿
-<footer>
-    <p>Join Other side? <input value="Yes" type="button" class="btn btn-danger" /> <input value="No" type="button" class="btn btn-success" /></p>
-</footer>
+﻿@using Day3.Infrastructure
+@model Day3.Infrastructure.User
+
+<div class="footer">
+    <p>Join Other side? <input id="YesButton" value="Yes" type="button" class="btn @(@Model.Side == Side.Light ? "btn-danger" : "btn-success" )" /> <input id="NoButton" value="No" type="button" class="btn @(@Model.Side == Side.Light ? "btn-success" : "btn-danger" )" /></p>
+</div>

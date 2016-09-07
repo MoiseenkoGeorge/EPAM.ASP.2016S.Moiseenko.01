@@ -1,7 +1,34 @@
-﻿@model Day3.Infrastructure.User
+﻿@using Day3.Infrastructure
+@model Day3.Infrastructure.User
 
-<h1>My Name is @Model.Name @Model.Surname</h1>
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div id="content" class="content @(@Model.Side == Side.Dark ? "dark" : "light") ">
+    <h1>My Name is @Model.Name @Model.Surname</h1>
 
-@Html.Partial("Header", @Model)
-
-@Html.Action("Footer")
+    @Html.Partial("Header", @Model)
+    @Html.Action("Footer", @Model)
+</div>
+@section Navbar
+{
+    <div id="navbar" class="navbar navbar-fixed-top @(@Model.Side == Side.Dark ? "navbar-inverse" : "navbar-default")">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+}

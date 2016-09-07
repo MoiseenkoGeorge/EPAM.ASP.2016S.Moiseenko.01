@@ -23,13 +23,33 @@ textarea {
     max-width: 280px;
 }
 
+.content {
+    position: relative;
+    padding: 150px;
+    min-height: 100%;
+}
+
 .light {
-    background-color: darkslategray;
-    color: lightcyan;
+    background-color: #F8F8F8;
+    color: black;
 
 }
 
 .dark {
-    background-color: lightcyan;
-    color: darkslategray;
+    background-color: #101010;
+    color: #F8F8F8;
+}
+
+body {
+    height: 100%;
+      
+}
+
+.footer {
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 50px;
+    text-align: center;
+    position: absolute;
 }

@@ -13,7 +13,8 @@ namespace Day2.Infrastructure
     {
         public IController CreateController(RequestContext requestContext, string controllerName)
         {
-            if(requestContext.HttpContext.Request.IsLocal)
+            if(!requestContext.HttpContext.Request.IsLocal)
+                throw new AccessViolationException();
             Type targetType = null;
             controllerName = controllerName.ToLower();
             switch (controllerName)

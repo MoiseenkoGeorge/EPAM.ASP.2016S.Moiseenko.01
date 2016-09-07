@@ -11,15 +11,23 @@ namespace Day3.Controllers
     public class PersonController : Controller
     {
         // GET: Person
+        [HttpGet]
         public ActionResult Index(int id)
         {
             return View("Person",StaticUserRepository.Users[id]);
         }
 
-        [ChildActionOnly]
-        public ActionResult Footer()
+        [HttpPost]
+        public ActionResult Index(User user)
         {
-            return PartialView("Footer");
+            user.Side = Side.Dark;
+            StaticUserRepository.Users.Single(u => u.Name == user.Name).Side = Side.Dark;
+            return View("Person", user);
+        }
+        [ChildActionOnly]
+        public ActionResult Footer(User user)
+        {
+            return PartialView("Footer", user);
         }
     }
 }
