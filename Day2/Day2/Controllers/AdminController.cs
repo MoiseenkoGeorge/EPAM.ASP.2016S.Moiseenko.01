@@ -11,10 +11,6 @@ namespace Day2.Controllers
 
     public class AdminController : Controller
     {
-        public AdminController()
-        {
-            this.ActionInvoker = new CustomActionInvoker();
-        }
         //[Local]
         [HttpGet]
         public ActionResult Edit()

@@ -13,6 +13,7 @@ namespace Day2.Infrastructure
     {
         public IController CreateController(RequestContext requestContext, string controllerName)
         {
+            if(requestContext.HttpContext.Request.IsLocal)
             Type targetType = null;
             controllerName = controllerName.ToLower();
             switch (controllerName)
