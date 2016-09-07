@@ -1,6 +1,11 @@
 ﻿@using Day3.Infrastructure
 @model Day3.Infrastructure.User
-
-<div class="footer">
-    <p>Join Other side? <input id="YesButton" value="Yes" type="button" class="btn @(@Model.Side == Side.Light ? "btn-danger" : "btn-success" )" /> <input id="NoButton" value="No" type="button" class="btn @(@Model.Side == Side.Light ? "btn-success" : "btn-danger" )" /></p>
-</div>
+ 
+<form method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.Surname)
+    <div class="footer">
+        <p>Join Other side? <input id="YesButton" value="Yes" type="submit" class="btn @(@Model.Side == Side.Light ? "btn-danger" : "btn-success" )" /> <input id="NoButton" value="No" type="button" class="btn @(@Model.Side == Side.Light ? "btn-success" : "btn-danger" )" /></p>
+    </div>
+</form>

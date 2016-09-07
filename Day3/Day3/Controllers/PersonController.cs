@@ -12,7 +12,7 @@ namespace Day3.Controllers
     {
         // GET: Person
         [HttpGet]
-        public ActionResult Index(int id)
+        public ActionResult Index(int id = 0)
         {
             return View("Person",StaticUserRepository.Users[id]);
         }
