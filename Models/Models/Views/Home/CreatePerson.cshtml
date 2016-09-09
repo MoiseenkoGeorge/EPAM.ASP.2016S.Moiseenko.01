@@ -1,0 +1,33 @@
+﻿@model Models.Models.Person
+
+
+<h2>Create Person</h2>
+
+@using (Html.BeginForm("DisplaySummary","Home"))
+{
+    <div class="row">
+        @Html.LabelFor(m => m.PersonId, new { @class = "col-xs-3" })
+        @Html.EditorFor(m => m.PersonId, new { @class = "col-xs-4" })
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-xs-3" })
+        @Html.EditorFor(m => m.FirstName, new { @class = "col-xs-4" })
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.LastName, new { @class = "col-xs-3" })
+        @Html.EditorFor(m => m.LastName, new { @class = "col-xs-4" })
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.Role, new {@class = "col-xs-3"})
+        @Html.EditorFor(m => m.Role, new {@class = "col-xs-4"})
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.HomeAddress.City, new {@class = "col-xs-3"})
+        @Html.EditorFor(m => m.HomeAddress.City, new {@class = "col-xs-4"})
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.HomeAddress.Country, new { @class = "col-xs-3" })
+        @Html.EditorFor(m => m.HomeAddress.Country, new { @class = "col-xs-4" })
+    </div>
+    <button type="submit">Submit</button>
+}

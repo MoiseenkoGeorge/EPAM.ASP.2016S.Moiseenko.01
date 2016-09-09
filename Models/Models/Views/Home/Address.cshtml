@@ -1,0 +1,36 @@
+﻿@model IList<Models.Models.Address>
+@{
+    ViewBag.Title = "Address";
+}
+
+<h2>Address</h2>
+
+@if (!Model.Any())
+{
+    using (Html.BeginForm())
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            <fieldset>
+                <legend>Address @(i + 1)</legend>
+                <div>
+                    <label>City:</label>
+                    @Html.Editor("[" + "].City")
+                </div>
+                <div>
+                    <label>Country:</label>
+                    @Html.Editor("[" + "].Country")
+                </div>
+            </fieldset>
+        }
+        <button type="submit">Submit</button>
+    }
+}
+else
+{
+    foreach (var address in Model)
+    {
+        <p>@address.City,@address.Country</p>
+    }
+    @Html.ActionLink("Back","Address")
+}

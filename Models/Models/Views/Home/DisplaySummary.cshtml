@@ -1,0 +1,57 @@
+﻿@model Models.Models.Address
+
+@{
+    ViewBag.Title = "DisplaySummary";
+}
+
+<h2>DisplaySummary</h2>
+
+<div>
+    <h4>Address</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Line1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Line1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Line2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Line2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
