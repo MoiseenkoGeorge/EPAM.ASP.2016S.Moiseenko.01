@@ -16,9 +16,11 @@ namespace Day4.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Person person)
+        public ActionResult Index(FormCollection formData)
         {
-            return View();
+            Person person = new Person();
+            UpdateModel(person,formData);
+            return View(person);
         }
     }
 }
